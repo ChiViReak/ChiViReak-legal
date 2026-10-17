@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>បណ្ណាល័យច្បាប់ និងព័ត៌មាន</title>
+    <title>កម្មវិធីស្រាវជ្រាវ និងស្វែងយល់អំពីច្បាប់</title>
     <style>
         :root {
-            --primary-color: #1b365d;
-            --secondary-color: #d9a74a;
-            --light-bg: #f5f7fa;
-            --text-dark: #333;
+            --primary-blue: #0f2c59;
+            --bright-red: #d91b1b;
+            --gold-text: #f4d068;
+            --light-bg: #ffffff;
         }
-        
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -20,43 +20,74 @@
         }
 
         body {
-            background-color: var(--light-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
         }
 
-        header {
-            background-color: var(--primary-color);
+        /* ផ្នែក Banner ខាងលើ */
+        .banner {
+            background: linear-gradient(to right, var(--bright-red), var(--primary-blue));
             color: white;
             padding: 20px;
             text-align: center;
-            border-bottom: 4px solid var(--secondary-color);
+            border-bottom: 5px solid var(--gold-text);
+            position: relative;
         }
 
-        header h1 {
-            font-size: 24px;
+        .banner h1 {
+            font-size: 26px;
+            color: var(--gold-text);
             margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
         }
 
+        .banner p {
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        /* របារម៉ឺនុយសំខាន់ (MainMenu) */
         nav {
-            background: #2c4d75;
-            padding: 10px;
-            text-align: center;
+            background-color: var(--primary-blue);
+            border-bottom: 1px solid #244273;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 5px 0;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 16px;
+            padding: 10px 15px;
+            font-size: 14px;
+            transition: background 0.3s;
         }
 
+        nav a:hover, nav a.active {
+            background-color: var(--bright-red);
+            color: var(--gold-text);
+            font-weight: bold;
+        }
+
+        /* របារម៉ឺនុយរងជួរទី២ (SubMenu) */
+        .sub-nav {
+            background-color: #163e75;
+            padding: 5px 0;
+        }
+
+        /* ផ្ទៃមាតិកា */
         .container {
             max-width: 1200px;
             margin: 20px auto;
-            padding: 0 20px;
+            padding: 0 15px;
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 3fr 1fr;
             gap: 20px;
         }
 
@@ -66,126 +97,129 @@
             }
         }
 
-        section {
+        /* ផ្នែកបង្ហាញអត្ថបទ ឬសៀវភៅ */
+        main {
+            background: white;
+            padding: 25px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .page-title {
+            font-size: 28px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .book-link {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .book-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ផ្នែកខាងស្តាំ (Sidebar) */
+        aside {
             background: white;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .widget-title {
+            font-size: 16px;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-weight: bold;
+            border-bottom: 2px solid var(--bright-red);
+            padding-bottom: 5px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             margin-bottom: 20px;
         }
 
-        h2 {
-            color: var(--primary-color);
-            border-left: 4px solid var(--secondary-color);
-            padding-left: 10px;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-
-        .news-item {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
-        }
-
-        .news-item:last-child {
-            border-bottom: none;
-        }
-
-        .news-date {
-            font-size: 12px;
-            color: #777;
-        }
-
-        .doc-list {
-            list-style: none;
-        }
-
-        .doc-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .btn-download {
-            background-color: var(--secondary-color);
-            color: #000;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .btn-download:hover {
-            background-color: #c4923c;
-        }
-
+        /* ផ្នែក Footer */
         footer {
-            background-color: var(--primary-color);
+            background-color: var(--primary-blue);
             color: white;
             text-align: center;
             padding: 15px;
             margin-top: 40px;
-            font-size: 14px;
+            border-top: 4px solid var(--bright-red);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>មជ្ឈមណ្ឌលចែករំលែកព័ត៌មាន និងឯកសារច្បាប់</h1>
-        <p>ប្រភពចំណេះដឹងច្បាប់សម្រាប់អ្នករាល់គ្នា</p>
-    </header>
+    <!-- បដាខាងលើ -->
+    <div class="banner">
+        <h1>កម្មវិធីស្រាវជ្រាវ និងស្វែងយល់អំពីច្បាប់</h1>
+        <p>://wordpress.com</p>
+    </div>
 
+    <!-- របារម៉ឺនុយជួរទី១ -->
     <nav>
-        <a href="#news">ព័ត៌មានថ្មីៗ</a>
-        <a href="#documents">ឯកសារច្បាប់</a>
+        <div class="nav-container">
+            <a href="#" class="active">Home</a>
+            <a href="#">រដ្ឋធម្មនុញ្ញនៃព្រះរាជាណាចក្រកម្ពុជា</a>
+            <a href="#">ក្រមព្រហ្មទណ្ឌ</a>
+            <a href="#">ក្រមរដ្ឋប្បវេណី</a>
+            <a href="#">ការស្រាវជ្រាវ</a>
+            <a href="#">រៀបរាប់ពីយើង</a>
+            <a href="#">សៀវភៅ</a>
+        </div>
     </nav>
 
+    <!-- របារម៉ឺនុយជួរទី២ -->
+    <nav class="sub-nav">
+        <div class="nav-container">
+            <a href="#">ឯកសារទាក់ទងទៅនឹងអភិបាលកិច្ចល្អ</a>
+            <a href="#">រចនាសម្ព័ន្ធ</a>
+            <a href="#">គេហទំព័រនានា</a>
+            <a href="#">គំនិតល្អៗពីលោកអ្នក</a>
+            <a href="#">ទំនាក់ទំនង</a>
+            <a href="#">ផ្សេងៗ</a>
+        </div>
+    </nav>
+
+    <!-- ផ្ទៃមាតិកា និង Sidebar -->
     <div class="container">
-        <!-- ផ្នែកព័ត៌មាន -->
+        <!-- ផ្នែកខាងឆ្វេង៖ មាតិកាដើម -->
         <main>
-            <section id="news">
-                <h2>📰 ព័ត៌មាន និងបច្ចុប្បន្នភាពច្បាប់</h2>
-                <div class="news-item">
-                    <div class="news-date">ថ្ងៃទី ១៧ តុលា ២០២៦</div>
-                    <h3>ការប្រកាសដាក់ឱ្យប្រើប្រាស់ច្បាប់ស្តីពីការធ្វើនីរូបនីយកម្មឌីជីថល</h3>
-                    <p>រាជរដ្ឋាភិបាលបានអនុម័តលើសេចក្តីព្រាងច្បាប់ថ្មីមួយ ដើម្បីជម្រុញការប្រើប្រាស់ប្រព័ន្ធអេឡិចត្រូនិកក្នុងស្ថាប័នរដ្ឋឱ្យកាន់តែមានប្រសិទ្ធភាព...</p>
-                </div>
-                <div class="news-item">
-                    <div class="news-date">ថ្ងៃទី ១០ តុលា ២០២៦</div>
-                    <h3>សិក្ខាសាលាស្តីពីការយល់ដឹងអំពីច្បាប់ការងារសម្រាប់អាជីវកម្មខ្នាតតូច</h3>
-                    <p>ក្រសួងបានរៀបចំយុទ្ធនាការចុះផ្សព្វផ្សាយ និងពន្យល់អំពីកាតព្វកិច្ចច្បាប់ការងារដល់ម្ចាស់អាជីវកម្មដើម្បីការពារសិទ្ធិនិយោជិត...</p>
-                </div>
-            </section>
+            <h2 class="page-title">សៀវភៅ</h2>
+            <div style="border-left: 4px solid var(--bright-red); padding-left: 15px;">
+                <a href="documents/phumibal.pdf" class="book-link" download>📄 សេចក្តីព្រាងក្រមបរិស្ថាន និងធនធានធម្មជាតិ</a>
+                <p style="color: #666; font-size: 14px; margin-top: 5px;">ចុចដើម្បីទាញយកឯកសារជាប្រភេទ PDF</p>
+            </div>
         </main>
 
-        <!-- ផ្នែកទាញយកឯកសារ -->
+        <!-- ផ្នែកខាងស្តាំ៖ Sidebar -->
         <aside>
-            <section id="documents">
-                <h2>📂 ទាញយកឯកសារច្បាប់</h2>
-                <ul class="doc-list">
-                    <li class="doc-item">
-                        <span>ច្បាប់ភូមិបាល (PDF)</span>
-                        <a href="#" class="btn-download" onclick="alert('ជំនួសកន្លែងនេះដោយ Link ឯកសាររបស់អ្នក')">ទាញយក</a>
-                    </li>
-                    <li class="doc-item">
-                        <span>ច្បាប់ស្តីពីការងារ (PDF)</span>
-                        <a href="#" class="btn-download" onclick="alert('ជំនួសកន្លែងនេះដោយ Link ឯកសាររបស់អ្នក')">ទាញយក</a>
-                    </li>
-                    <li class="doc-item">
-                        <span>ក្រមរដ្ឋប្បវេណី (PDF)</span>
-                        <a href="#" class="btn-download" onclick="alert('ជំនួសកន្លែងនេះដោយ Link ឯកសាររបស់អ្នក')">ទាញយក</a>
-                    </li>
-                </ul>
-            </section>
+            <div class="widget-title">ស្វែងរក</div>
+            <input type="text" class="search-box" placeholder="ស្វែងរកអត្ថបទនៅទីនេះ...">
+            
+            <div class="widget-title">និមិត្តសញ្ញា</div>
+            <p style="font-size: 14px; color: #555; text-align: center; padding: 20px 0; border: 1px dashed #ccc;">
+                [ កន្លែងដាក់រូបភាពឡូហ្គោ ]
+            </p>
         </aside>
     </div>
 
     <footer>
-        <p>&copy; 2026 រក្សាសិទ្ធិគ្រប់យ៉ាងដោយបណ្ណាល័យច្បាប់</p>
+        <p>&copy; 2026 រក្សាសិទ្ធិគ្រប់យ៉ាងដោយ កម្មវិធីស្រាវជ្រាវ និងស្វែងយល់អំពីច្បាប់</p>
     </footer>
 
 </body>
